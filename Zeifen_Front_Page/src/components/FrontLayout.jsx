@@ -1,11 +1,17 @@
 import {Outlet} from 'react-router-dom';
+import { Header, Footer} from './index';
+import Provider from '../context/Provider';
 
 const FrontLayout = () => {
   return (
     <>
-        <div>Título para todas las paginas</div>
-        <Outlet />
-
+     <Provider>
+      <Header />
+      <main className="container">
+      <Outlet />
+      </main>
+      <Footer />
+     </Provider>
     </>
   )
 }
