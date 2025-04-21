@@ -2,7 +2,9 @@ import React from 'react'
 
 const Carrousel = () => {
   return (
-    <div>Carrousel</div>
+    <>
+      <div className='general-text'>Carrousel</div>
+    </>
   )
 }
 
