@@ -9,8 +9,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"; //Se imp
 import {
   Home,
   About,
+  Routes,
 } from "./pages";
 import FrontLayout from "./components/FrontLayout";
+import UseParams from "./components/UseParams";
 
 const router = createBrowserRouter(
   [
@@ -25,6 +27,14 @@ const router = createBrowserRouter(
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path: "/routes",
+          element: <Routes />,
+        },
+        {
+          path: "/routes/path/:user",
+          element: <UseParams />,
         },
       ],
     },
