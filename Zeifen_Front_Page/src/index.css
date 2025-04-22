@@ -82,6 +82,8 @@
 
 .general-text {
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+}
+
+.form_button {
+  width: 70%;
 }
