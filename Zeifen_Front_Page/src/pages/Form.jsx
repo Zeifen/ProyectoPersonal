@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Swal from 'sweetalert2';
 
 const Form = () => {
 
@@ -11,8 +12,16 @@ const Form = () => {
   const [ state, setState ] = useState('');
   const [ description, setDescription ] = useState('');
 
-  const handleValue = () => {
-
+  const handleValue = (e) => {
+    e.preventDefault();
+    const request = { name:name, lastName:lastName, email:email, company:company, direction:direction, country:country, state:state, description:description}
+    console.log(request);
+    Swal.fire({
+      title: '¡Gracias por tu interés!',
+      text: '¡Tu solicitud ha sido enviada, en cuanto pueda me pondré en contacto contigo!',
+      icon: 'success',
+      confirmButtonText: 'Es todo'
+    })
   };
 
   return (
@@ -24,7 +33,7 @@ const Form = () => {
           <div className="row g-3">
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">Nombre</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value={name} onChange={(e) => {setName(e.target.value)}} required/>
+              <input type="text" className="form-control" id="firstName" placeholder="" value={name} onChange={(e) => {setName(e.target.value)}}/>
               <div className="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -32,7 +41,7 @@ const Form = () => {
 
             <div className="col-sm-6">
               <label htmlFor="lastName" className="form-label">Apellidos</label>
-              <input type="text" className="form-control" id="lastName" placeholder="" value={lastName} onChange={(e) => {setLastName(e.target.value)}} required/>
+              <input type="text" className="form-control" id="lastName" placeholder="" value={lastName} onChange={(e) => {setLastName(e.target.value)}}/>
               <div className="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -53,7 +62,7 @@ const Form = () => {
 
             <div className="col-12">
               <label htmlFor="address" className="form-label">Dirección de empresa</label>
-              <input type="text" className="form-control" id="address" placeholder="" value={direction} onChange={(e) => {setCompanyDirection(e.target.value)}} required/>
+              <input type="text" className="form-control" id="address" placeholder="" value={direction} onChange={(e) => {setCompanyDirection(e.target.value)}}/>
               <div className="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -61,9 +70,9 @@ const Form = () => {
 
             <div className="col-md-6">
               <label htmlFor="country" className="form-label">País</label>
-              <select className="form-select" id="country" value={country} onChange={(e) => {setCountry(e.target.value)}} required>
+              <select className="form-select" id="country" value={country} onChange={(e) => {setCountry(e.target.value)}}>
                 <option value="">Selecciona</option>
-                <option>United States</option>
+                <option>México</option>
               </select>
               <div className="invalid-feedback">
                 Please select a valid country.
@@ -72,9 +81,9 @@ const Form = () => {
 
             <div className="col-md-6">
               <label htmlFor="state" className="form-label">Estado</label>
-              <select className="form-select" id="state" value={state} onChange={(e) => {setState(e.target.value)}} required>
+              <select className="form-select" id="state" value={state} onChange={(e) => {setState(e.target.value)}}>
                 <option value="">Selecciona</option>
-                <option>California</option>
+                <option>Naucalpan</option>
               </select>
               <div className="invalid-feedback">
                 Please provide a valid state.
