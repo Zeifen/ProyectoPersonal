@@ -1,7 +1,26 @@
 import {useState} from 'react';
+//Funciones creadas de alert
 import Swal from 'sweetalert2';
+import { alertFunction, alertLoading } from '../components/alertFunction';
+//Context
+import { useContext } from "react";
+import ConstantsContext from '../context/Context';
 
 const Form = () => {
+
+  const AWSUrl = import.meta.env.VITE_AWS_API;
+
+  const { alertTitleSending, 
+    alertTextWait,
+    alertTitleTy,
+    alertTextRequest,
+    alertIconSucces,
+    alertConfirmButtonText,
+    alertTitleWrong,
+    alertTextError,
+    alertIconError,
+    alertConfirmButtonOk 
+  } = useContext(ConstantsContext); //Destructurando Context
 
   const [ name, setName ] = useState('');
   const [ lastName, setLastName ] = useState('');
@@ -12,17 +31,28 @@ const Form = () => {
   const [ state, setState ] = useState('');
   const [ description, setDescription ] = useState('');
 
-  const handleValue = (e) => {
+  const handleValue = async (e) => {
+    // Mostrar mensaje de espera
+    alertLoading(alertTitleSending, alertTextWait);
     e.preventDefault();
-    const request = { name:name, lastName:lastName, email:email, company:company, direction:direction, country:country, state:state, description:description}
-    console.log(request);
-    Swal.fire({
-      title: '¡Gracias por tu interés!',
-      text: '¡Tu solicitud ha sido enviada, en cuanto pueda me pondré en contacto contigo!',
-      icon: 'success',
-      confirmButtonText: 'Es todo'
-    })
-  };
+    //Creando objeto a mandar
+    const request = { name:name, lastName:lastName, mail:email, company:company, direction:direction, country:country, state:state, message:description};
+    try {
+      const response = await fetch(AWSUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+      });
+      //Solo para validar de manera rápida
+      const result = await response.json();
+      console.log('Respuesta de la API:', result);
+      Swal.close();
+      alertFunction(alertTitleTy, alertTextRequest, alertIconSucces, alertConfirmButtonText);
+    } catch (error) {
+      Swal.close();
+      alertFunction(alertTitleWrong, alertTextError(error), alertIconError, alertConfirmButtonOk);
+    }
+};
 
   return (
     <>
@@ -48,7 +78,7 @@ const Form = () => {
             </div>
 
             <div className="col-12">
-              <label htmlFor="email" className="form-label">Email <span className="text-body-secondary">(Optional)</span></label>
+              <label htmlFor="email" className="form-label">Email <span className="text-body-secondary">(Opcional)</span></label>
               <input type="email" className="form-control" id="email" placeholder="usuario@ejemplo.com"value={email} onChange={(e) => {setEmail(e.target.value)}}/>
               <div className="invalid-feedback">
                 Please enter a valid email address for shipping updates.
