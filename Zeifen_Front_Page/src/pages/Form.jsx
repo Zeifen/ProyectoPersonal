@@ -7,7 +7,7 @@ import { useContext } from "react";
 import ConstantsContext from '../context/Context';
 
 const Form = () => {
-
+  //.env
   const AWSUrl = import.meta.env.VITE_AWS_API;
 
   const { alertTitleSending, 
@@ -20,7 +20,7 @@ const Form = () => {
     alertTextError,
     alertIconError,
     alertConfirmButtonOk 
-  } = useContext(ConstantsContext); //Destructurando Context
+  } = useContext(ConstantsContext);
 
   const [ name, setName ] = useState('');
   const [ lastName, setLastName ] = useState('');
@@ -32,10 +32,8 @@ const Form = () => {
   const [ description, setDescription ] = useState('');
 
   const handleValue = async (e) => {
-    // Mostrar mensaje de espera
     alertLoading(alertTitleSending, alertTextWait);
     e.preventDefault();
-    //Creando objeto a mandar
     const request = { name:name, lastName:lastName, mail:email, company:company, direction:direction, country:country, state:state, message:description};
     try {
       const response = await fetch(AWSUrl, {
@@ -87,12 +85,12 @@ const Form = () => {
 
             <div className="col-12">
               <label htmlFor="address2" className="form-label">Empresa<span className="text-body-secondary"></span></label>
-              <input type="text" className="form-control" id="address2" placeholder="Nombre de la empresa" value={company} onChange={(e) => {setCompany(e.target.value)}}/>
+              <input type="text" className="form-control" id="company" placeholder="Nombre de la empresa" value={company} onChange={(e) => {setCompany(e.target.value)}}/>
             </div>
 
             <div className="col-12">
               <label htmlFor="address" className="form-label">Dirección de empresa</label>
-              <input type="text" className="form-control" id="address" placeholder="" value={direction} onChange={(e) => {setCompanyDirection(e.target.value)}}/>
+              <input type="text" className="form-control" id="direction" placeholder="" value={direction} onChange={(e) => {setCompanyDirection(e.target.value)}}/>
               <div className="invalid-feedback">
                 Please enter your shipping address.
               </div>
