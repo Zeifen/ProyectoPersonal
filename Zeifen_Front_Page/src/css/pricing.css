@@ -1,8 +1,50 @@
   
   .container {
-    max-width: 960px;
+    max-width: 1200px;
   }
   
-  .pricing-header {
-    max-width: 700px;
+  .resume-col-lef {
+    background-color: rgb(4, 61, 58);
+    color: aliceblue;
+    padding: 2rem;
+  }
+  
+  .resume-col-right {
+    background-color:white;
+    color: black;
+    padding: 2rem;
+    text-align: justify;
+  }
+
+  .container-general {
+    margin-bottom: 1rem;
+    font-size:x-large;
+    font-weight: bold;
+    color: rgb(30, 88, 92);
+  }
+
+  .subtitles-right {
+    font-size:large;
+    font-weight: bold;
+    color:rgb(53, 137, 145);
+  }
+
+  .subtitles-left {
+    font-size:large;
+    font-weight: bold;
+    color:rgb(255, 255, 255);
+    margin: 2rem 0rem 2rem 0rem;
+  }
+
+  .ul-custom {
+    margin: 1rem;
+    padding: 0;
+  }
+
+  .picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
   }

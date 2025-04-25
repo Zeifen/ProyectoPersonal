@@ -1,7 +1,7 @@
 import ConstantsContext from './Context';
 
 const Provider = ({children}) => {
-
+    const contextResume = "CV";
     const contextCarrousel = "Certificados";
     const contextContact = "Contacto";
     const alertTitleSending = "Enviando...";
@@ -19,6 +19,7 @@ const Provider = ({children}) => {
     <>
         <ConstantsContext.Provider 
         value={{
+         contextResume,
          contextCarrousel,
          contextContact,
          alertTitleSending,

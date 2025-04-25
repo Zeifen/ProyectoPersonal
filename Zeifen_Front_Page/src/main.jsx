@@ -8,10 +8,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"; //Se imp
 import {
   Home,
   Carrousel,
-  Form
+  Form,
+  CV
 } from "./pages";
 import FrontLayout from "./components/FrontLayout";
-import UseParams from "./components/UseParams";
+//import UseParams from "./components/UseParams";
 
 const router = createBrowserRouter(
   [
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
           element: <Home />,
         },
         {
+          path: "/resume",
+          element: <CV />,
+        },
+        {
           path: "/certificates",
           element: <Carrousel />,
         },
@@ -31,10 +36,12 @@ const router = createBrowserRouter(
           path: "/contact",
           element: <Form />,
         },
+        {/* 
         {
           path: "/routes/path/:user",
           element: <UseParams />,
         },
+        */}
       ],
     },
   ],

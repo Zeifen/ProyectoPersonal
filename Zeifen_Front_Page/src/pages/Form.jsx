@@ -54,9 +54,9 @@ const Form = () => {
 
   return (
     <>
-    <div>
+    <div className='mb-4'>
       <div>
-        <h4 className="mb-3">Ingresa tu información</h4>
+        <h4 className="mb-4">¡Ingresa tu información y me pondré en contacto contigo!</h4>
         <form className="needs-validation" >
           <div className="row g-3">
             <div className="col-sm-6">
@@ -118,20 +118,18 @@ const Form = () => {
               </div>
             </div>
 
-            <div className='form-group mb-2'>
+            <div className='form-group mb-4'>
               <label htmlFor="state" className="form-label">Descripción</label>
               <textarea type="tnumber" id='descripcion' className="form-control" name='descripcion' placeholder='Agrega el motivo' value={description} onChange={(e) => {setDescription(e.target.value)}}></textarea>
             </div>
           </div>
-
-          <hr className="my-4"/>
 
           <div className="row gy-3">
             <div className='col-md-12 general-text'>
             <button className="btn btn-primary btn-lg form_button" type="submit" onClick={handleValue}>Enviar</button>
           </div>  
         </div>
-          <hr className="my-4"/> 
+          
         </form>
       </div>
     </div>
