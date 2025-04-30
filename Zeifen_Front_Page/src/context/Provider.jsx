@@ -12,9 +12,13 @@ const Provider = ({children}) => {
     const alertIconSucces = 'success';
     const alertConfirmButtonText = 'Es todo';
     const alertTitleWrong = '¡Ups!';
-    const alertTextError = (error) => `No se pudo guardar la información. Código: ${error.message || JSON.stringify(error)}`;
     const alertIconError = 'error';
     const alertConfirmButtonOk = 'Entendido';
+    const alertTitleLogWelcome = '¡Bienvenido!';
+    const alertTextLogSuccess = 'Inicio de sesión exitoso';
+    const alertTitleLogError = 'Error';
+    const alertTextError = (error) => `No se pudo guardar la información: ${error.message || JSON.stringify(error)}`;
+    const alertTextLogError = (error) => `Error al iniciar sesión: ${error.message || JSON.stringify(error)}`;
 
   return (
     <>
@@ -31,9 +35,13 @@ const Provider = ({children}) => {
          alertIconSucces,
          alertConfirmButtonText,
          alertTitleWrong,
-         alertTextError,
          alertIconError,
-         alertConfirmButtonOk
+         alertConfirmButtonOk,
+         alertTitleLogWelcome,
+         alertTextLogSuccess,
+         alertTitleLogError,
+         alertTextError,
+         alertTextLogError,
         }}>
             {children}
         </ConstantsContext.Provider>

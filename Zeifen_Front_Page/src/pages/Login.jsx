@@ -1,8 +1,15 @@
 import { useState } from 'react';
+//AWS
 import { login } from '../services/authService';
-
+//Alerts
+import { alertBasic } from "../components/alertFunction";
+//Context
+import { useContext } from "react";
+import ConstantsContext from '../context/Context';
 
 const Login = () => {
+
+  const { alertTitleLogWelcome, alertTextLogSuccess, alertIconSucces, alertTitleLogError, alertTextLogError, alertIconError } = useContext(ConstantsContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,10 +20,10 @@ const Login = () => {
     try {
       const token = await login(email, password);
       console.log('Token obtenido:', token);
-      alert('Inicio de sesión exitoso');
+      alertBasic( alertTitleLogWelcome, alertTextLogSuccess, alertIconSucces);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
-      alert('Error al iniciar sesión: ' + error.message);
+      alertBasic( alertTitleLogError, alertTextLogError(error), alertIconError);
     }
   };
 
