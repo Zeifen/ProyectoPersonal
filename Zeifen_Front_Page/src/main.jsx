@@ -1,18 +1,20 @@
 import { StrictMode } from "react";
+//CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import "./css/pricing.css";
-
-import ReactDOM from "react-dom/client"; //Se importó ReactDOM
-import { createBrowserRouter, RouterProvider } from "react-router-dom"; //Se importaron createBrowserRouterm, RouterProvider
+//ReactDOM
+import ReactDOM from "react-dom/client"; 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//Components
 import {
   Home,
   Carrousel,
   Form,
-  CV
+  CV,
+  Login
 } from "./pages";
 import FrontLayout from "./components/FrontLayout";
-//import UseParams from "./components/UseParams";
 
 const router = createBrowserRouter(
   [
@@ -35,6 +37,10 @@ const router = createBrowserRouter(
         {
           path: "/contact",
           element: <Form />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
         {/* 
         {

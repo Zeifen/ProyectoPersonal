@@ -4,6 +4,7 @@ const Provider = ({children}) => {
     const contextResume = "CV";
     const contextCarrousel = "Certificados";
     const contextContact = "Contacto";
+    const contextLogin = "Login";
     const alertTitleSending = "Enviando...";
     const alertTextWait = "Espera un momento por favor";
     const alertTitleTy = '¡Gracias por tu interés!';
@@ -22,6 +23,7 @@ const Provider = ({children}) => {
          contextResume,
          contextCarrousel,
          contextContact,
+         contextLogin,
          alertTitleSending,
          alertTextWait,
          alertTitleTy,

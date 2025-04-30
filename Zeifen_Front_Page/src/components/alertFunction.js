@@ -19,3 +19,22 @@ export const alertLoading = (title, text) => {
         }
     });
 }
+
+export async function showPassword() {
+    const { value: password } = await Swal.fire({
+      title: 'Cambia tu contraseña',
+      input: 'password',
+      inputLabel: 'Nueva contraseña',
+      inputPlaceholder: 'Ingresa tu nueva contraseña',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      inputAttributes: {
+        maxlength: '100',
+        autocapitalize: 'off',
+        autocorrect: 'off',
+      },
+      showCancelButton: true,
+
+    });
+    return password; 
+  }

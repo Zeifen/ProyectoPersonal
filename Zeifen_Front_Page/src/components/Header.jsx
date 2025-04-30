@@ -4,7 +4,7 @@ import ConstantsContext from '../context/Context';
 
 const Header = () => {
 
-    const { contextResume, contextContact, contextCarrousel } = useContext(ConstantsContext); //Destructurando variable del provider
+    const { contextResume, contextContact, contextCarrousel, contextLogin } = useContext(ConstantsContext); //Destructurando variable del provider
 
   return (
     <div className="container py-3">
@@ -19,6 +19,7 @@ const Header = () => {
             <Link className="me-3 py-2 link-body-emphasis text-decoration-none" to="/resume" title={contextResume}>{contextResume}</Link>
             <Link className="me-3 py-2 link-body-emphasis text-decoration-none" to="/certificates" title={contextCarrousel}>{contextCarrousel}</Link>
             <Link className="me-3 py-2 link-body-emphasis text-decoration-none" to="/contact" title={contextContact}>{contextContact}</Link>
+            <Link className="me-3 py-2 link-body-emphasis text-decoration-none" to="/login" title={contextLogin}>{contextLogin}</Link>
           </nav>
         </div>
       </header>
