@@ -1,5 +1,5 @@
 import {useState} from 'react';
-//Funciones creadas de alert
+//Alerts
 import Swal from 'sweetalert2';
 import { alertFunction, alertLoading } from '../components/alertFunction';
 //Context
@@ -57,7 +57,7 @@ const Form = () => {
     <div className='mb-4'>
       <div>
         <h4 className="mb-4">¡Ingresa tu información y me pondré en contacto contigo!</h4>
-        <form className="needs-validation" >
+        <form>
           <div className="row g-3">
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">Nombre</label>
@@ -76,7 +76,7 @@ const Form = () => {
             </div>
 
             <div className="col-12">
-              <label htmlFor="email" className="form-label">Email <span className="text-body-secondary">(Opcional)</span></label>
+              <label htmlFor="email" className="form-label">Email <span className="text-body-secondary"></span></label>
               <input type="email" className="form-control" id="email" placeholder="usuario@ejemplo.com"value={email} onChange={(e) => {setEmail(e.target.value)}}/>
               <div className="invalid-feedback">
                 Please enter a valid email address for shipping updates.

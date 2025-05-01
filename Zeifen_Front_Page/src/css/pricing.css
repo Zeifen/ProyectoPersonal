@@ -48,3 +48,20 @@
     object-fit: cover;
     margin-bottom: 1rem;
   }
+
+  .container-login {
+    margin: 2rem 0rem 2rem 0rem;
+    text-align: center;
+  }
+
+  .input-size {
+    width: 30%;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+
+  .button-login-size {
+    width: 20%;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }

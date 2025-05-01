@@ -28,16 +28,20 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Iniciar sesión</h2>
+    <div className="container container-login">
+      <h2 className='mb-4'>Iniciar sesión</h2>
       <form>
-        <input className='mb-2' type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-        <br />
-
-        <input className='mb-2' type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-        <br />
-
-        <button className='btn-success btn mb-2' type="submit" onClick={handleLogin}>Iniciar sesión</button>
+        <div className="row">
+          <div className="col-sm-12">
+            <input className='form-control input-size' type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+          </div>
+          <div className="col-sm-12">
+            <input className='form-control input-size' type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          </div>
+          <div className="col-sm-12">
+            <button className='btn-primary btn button-login-size' type="submit" onClick={handleLogin}>Iniciar sesión</button>
+          </div>
+        </div>
       </form>
     </div>
   )
