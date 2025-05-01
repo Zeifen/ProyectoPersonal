@@ -1,10 +1,12 @@
 import {useState} from 'react';
 //Alerts
 import Swal from 'sweetalert2';
-import { alertFunction, alertLoading } from '../components/alertFunction';
+import { alertFunction, alertLoading, alertBasic } from '../components/alertFunction';
 //Context
 import { useContext } from "react";
 import ConstantsContext from '../context/Context';
+//Constants
+import { generalText } from "../constants/generalConstants";
 
 const Form = () => {
   //.env
@@ -19,7 +21,10 @@ const Form = () => {
     alertTitleWrong,
     alertTextError,
     alertIconError,
-    alertConfirmButtonOk 
+    alertConfirmButtonOk,
+    alertTitleAuth,
+    alertTextAuth,
+    alertIconWarning
   } = useContext(ConstantsContext);
 
   const [ name, setName ] = useState('');
@@ -31,14 +36,23 @@ const Form = () => {
   const [ state, setState ] = useState('');
   const [ description, setDescription ] = useState('');
 
+  //Request
   const handleValue = async (e) => {
-    alertLoading(alertTitleSending, alertTextWait);
     e.preventDefault();
+    const token = localStorage.getItem(generalText.token);
+    if (!token) {
+      alertBasic(alertTitleAuth, alertTextAuth, alertIconWarning);
+      return;
+    }
+    alertLoading(alertTitleSending, alertTextWait);
     const request = { name:name, lastName:lastName, mail:email, company:company, direction:direction, country:country, state:state, message:description};
     try {
       const response = await fetch(AWSUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
         body: JSON.stringify(request)
       });
       //Solo para validar de manera rápida
@@ -62,25 +76,16 @@ const Form = () => {
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">Nombre</label>
               <input type="text" className="form-control" id="firstName" placeholder="" value={name} onChange={(e) => {setName(e.target.value)}}/>
-              <div className="invalid-feedback">
-                Valid first name is required.
-              </div>
             </div>
 
             <div className="col-sm-6">
               <label htmlFor="lastName" className="form-label">Apellidos</label>
               <input type="text" className="form-control" id="lastName" placeholder="" value={lastName} onChange={(e) => {setLastName(e.target.value)}}/>
-              <div className="invalid-feedback">
-                Valid last name is required.
-              </div>
             </div>
 
             <div className="col-12">
               <label htmlFor="email" className="form-label">Email <span className="text-body-secondary"></span></label>
               <input type="email" className="form-control" id="email" placeholder="usuario@ejemplo.com"value={email} onChange={(e) => {setEmail(e.target.value)}}/>
-              <div className="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
             </div>
 
             <div className="col-12">
@@ -91,9 +96,6 @@ const Form = () => {
             <div className="col-12">
               <label htmlFor="address" className="form-label">Dirección de empresa</label>
               <input type="text" className="form-control" id="direction" placeholder="" value={direction} onChange={(e) => {setCompanyDirection(e.target.value)}}/>
-              <div className="invalid-feedback">
-                Please enter your shipping address.
-              </div>
             </div>
 
             <div className="col-md-6">
@@ -102,9 +104,6 @@ const Form = () => {
                 <option value="">Selecciona</option>
                 <option>México</option>
               </select>
-              <div className="invalid-feedback">
-                Please select a valid country.
-              </div>
             </div>
 
             <div className="col-md-6">
@@ -113,9 +112,6 @@ const Form = () => {
                 <option value="">Selecciona</option>
                 <option>Naucalpan</option>
               </select>
-              <div className="invalid-feedback">
-                Please provide a valid state.
-              </div>
             </div>
 
             <div className='form-group mb-4'>

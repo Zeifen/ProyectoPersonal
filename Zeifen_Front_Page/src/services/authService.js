@@ -1,5 +1,8 @@
+//AWS
 import { CognitoUserPool, CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+//Alerts
 import { showPassword, alertBasic } from "../components/alertFunction";
+//Constants
 import { alertConst, generalText } from "../constants/generalConstants";
 
 const poolData = {

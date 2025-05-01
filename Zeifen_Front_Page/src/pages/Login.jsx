@@ -2,26 +2,32 @@ import { useState } from 'react';
 //AWS
 import { login } from '../services/authService';
 //Alerts
-import { alertBasic } from "../components/alertFunction";
+import Swal from 'sweetalert2';
+import { alertBasic, alertLoading } from "../components/alertFunction";
 //Context
 import { useContext } from "react";
 import ConstantsContext from '../context/Context';
 
 const Login = () => {
 
-  const { alertTitleLogWelcome, alertTextLogSuccess, alertIconSucces, alertTitleLogError, alertTextLogError, alertIconError } = useContext(ConstantsContext);
+  const { alertTitleLogWelcome, alertTextLogSuccess, alertIconSucces, alertTitleLogError, alertTextLogError, alertIconError, alertTitleSending, alertTextWait } = useContext(ConstantsContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  //Request
   const handleLogin = async (e) => {
+    alertLoading(alertTitleSending, alertTextWait);
     e.preventDefault();
-
     try {
       const token = await login(email, password);
       console.log('Token obtenido:', token);
+      Swal.close();
       alertBasic( alertTitleLogWelcome, alertTextLogSuccess, alertIconSucces);
+      setEmail('');
+      setPassword('');
     } catch (error) {
+      Swal.close();
       console.error('Error al iniciar sesión:', error);
       alertBasic( alertTitleLogError, alertTextLogError(error), alertIconError);
     }
