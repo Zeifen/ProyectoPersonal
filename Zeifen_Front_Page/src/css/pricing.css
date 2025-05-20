@@ -48,3 +48,14 @@
     object-fit: cover;
     margin-bottom: 1rem;
   }
+
+  .carousel-size {
+    max-width: 1000px;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
