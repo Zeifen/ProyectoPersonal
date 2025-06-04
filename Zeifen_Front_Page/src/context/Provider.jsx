@@ -14,6 +14,8 @@ const Provider = ({children}) => {
     const alertTextError = (error) => `No se pudo guardar la información. Código: ${error.message || JSON.stringify(error)}`;
     const alertIconError = 'error';
     const alertConfirmButtonOk = 'Entendido';
+    const alertTitleUnauthorized = 'No autorizado: Error 401';
+    const alertTextUnauthorized = 'Parece que no tienes autorización para hacer esto';
 
   return (
     <>
@@ -31,7 +33,9 @@ const Provider = ({children}) => {
          alertTitleWrong,
          alertTextError,
          alertIconError,
-         alertConfirmButtonOk
+         alertConfirmButtonOk,
+         alertTitleUnauthorized,
+         alertTextUnauthorized
         }}>
             {children}
         </ConstantsContext.Provider>

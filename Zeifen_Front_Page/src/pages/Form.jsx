@@ -44,6 +44,7 @@ const Form = () => {
       //Solo para validar de manera rápida
       const result = await response.json();
       console.log('Respuesta de la API:', result);
+      console.log('Response status: ', response.status);
       Swal.close();
       alertFunction(alertTitleTy, alertTextRequest, alertIconSucces, alertConfirmButtonText);
     } catch (error) {
